@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif;
+
+  --color-ink: #1f2328;
+  --color-sub: #6b7280;
+  --color-faint: #9ca3af;
+  --color-canvas: #f2f4f6;
+  --color-hub: #faf7f2;
+  --color-practice: #ffc83d;
+
+  --animate-slide-up: slide-up 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+  --animate-slide-down: slide-down 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+  --animate-fade-in: fade-in 0.18s ease-out;
+  --animate-pop: pop 0.28s cubic-bezier(0.2, 0.8, 0.2, 1.2);
+  --animate-shake: shake 0.36s ease-in-out;
+  --animate-hint: hint 1.1s ease-in-out infinite;
+
+  @keyframes slide-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  @keyframes slide-down {
+    from { transform: translateY(-110%); }
+    to { transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-8px); }
+    40%, 80% { transform: translateX(8px); }
+  }
+  @keyframes hint {
+    0%, 100% { box-shadow: 0 0 0 3px #ffc83d, 0 0 0 9px rgb(255 200 61 / 0.35); }
+    50% { box-shadow: 0 0 0 3px #ffc83d, 0 0 0 16px rgb(255 200 61 / 0); }
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #e7e3dc;
+  color: var(--color-ink);
+  /* 화면 맨 위를 끌어내리는 '알림 내리기' 연습이 브라우저 새로고침으로 새지 않게 막는다 */
+  overscroll-behavior-y: contain;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+button {
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+/* iOS는 16px 미만 입력칸에 포커스하면 화면을 확대한다 */
+input,
+textarea {
+  font-size: max(16px, 1em);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* Leaflet 기본 컨트롤 글씨를 앱 톤에 맞춘다 */
+.leaflet-container {
+  font-family: inherit;
+  background: #eef0ea;
+}
